@@ -25,7 +25,7 @@ def create_allergies(allergies: List[schemas.AllergyCreate], db: Session = Depen
         if existing_allergy:
             existing_allergies.append(existing_allergy)
         else:
-            new_allergy = models.Allergy(**allergy.dict())
+            new_allergy = models.Allergy(**allergy.model_dump())
             db.add(new_allergy)
             db.commit()
             db.refresh(new_allergy)
