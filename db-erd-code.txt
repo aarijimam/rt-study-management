@@ -49,18 +49,18 @@ Table Study_Patient {
 
 Table Allergy {
     AllergyID INT [primary key]
-    AllergyName VARCHAR(255)
+    AllergyName VARCHAR(255) [UNIQUE]
     Type VARCHAR(255)
 }
 
 Table PatientAllergies {
     PatientID INT
     AllergyID INT
-    primary key (PatientID, AllergyID)
+    primary key (PatientID, AllergyID) 
 }
 
 // Foreign Key Constraints
-Ref: Researcher.StaffID > Staff.StaffID
+Ref: Researcher.StaffID - Staff.StaffID
 Ref: Study.ManagerDoctorID > Staff.StaffID
 Ref: Study.HospitalID > Hospital.HospitalID
 Ref: Study_Researcher.StudyID > Study.StudyID
