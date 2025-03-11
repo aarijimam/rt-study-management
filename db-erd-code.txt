@@ -1,0 +1,71 @@
+Table Staff {
+    StaffID INT [primary key]
+    Name VARCHAR(255)
+    Role ENUM('Doctor', 'Assistant')
+    Specialization VARCHAR(255)  // Only for Doctors
+    ContactDetails VARCHAR(255)
+}
+
+Table Researcher {
+    ResearcherID INT [primary key]
+    StaffID INT [unique, not null]
+}
+
+Table Study {
+    StudyID INT [primary key]
+    Title VARCHAR(255)
+    Description TEXT
+    StartDate DATE
+    EndDate DATE
+    HospitalID INT
+    ManagerDoctorID INT  // Must be a Doctor
+}
+
+Table Hospital {
+    HospitalID INT [primary key]
+    Name VARCHAR(255)
+    Address TEXT
+    ContactNumber VARCHAR(20)
+}
+
+Table Study_Researcher {
+    StudyID INT
+    ResearcherID INT
+    primary key (StudyID, ResearcherID)
+}
+
+Table Patient {
+    PatientID INT [primary key]
+    Name VARCHAR(255)
+    DateOfBirth DATE
+    ContactDetails VARCHAR(255)
+}
+
+Table Study_Patient {
+    StudyID INT
+    PatientID INT
+    primary key (StudyID, PatientID)
+}
+
+Table Allergy {
+    AllergyID INT [primary key]
+    AllergyName VARCHAR(255)
+    Type VARCHAR(255)
+}
+
+Table PatientAllergies {
+    PatientID INT
+    AllergyID INT
+    primary key (PatientID, AllergyID)
+}
+
+// Foreign Key Constraints
+Ref: Researcher.StaffID > Staff.StaffID
+Ref: Study.ManagerDoctorID > Staff.StaffID
+Ref: Study.HospitalID > Hospital.HospitalID
+Ref: Study_Researcher.StudyID > Study.StudyID
+Ref: Study_Researcher.ResearcherID > Researcher.ResearcherID
+Ref: Study_Patient.StudyID > Study.StudyID
+Ref: Study_Patient.PatientID > Patient.PatientID
+Ref: PatientAllergies.PatientID > Patient.PatientID
+Ref: PatientAllergies.AllergyID > Allergy.AllergyID
