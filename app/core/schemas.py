@@ -12,5 +12,5 @@ class AllergyCreate(AllergyBase):
 class AllergyResponse(AllergyBase):
     allergyid: int
 
-    class Config:
+    class ConfigDict:
         from_attributes = True

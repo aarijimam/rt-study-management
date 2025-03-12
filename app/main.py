@@ -1,6 +1,5 @@
 from fastapi import FastAPI
 from app.api.routes import allergy
-from app.core.database import Base, engine
 import uvicorn
 
 app = FastAPI(title="Study Management API")

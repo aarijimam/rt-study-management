@@ -4,3 +4,7 @@ dotenv
 uvicorn
 asyncpg
 psycopg2-binary
+
+#For testing
+pytest
+httpx
