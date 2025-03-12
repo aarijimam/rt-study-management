@@ -115,6 +115,30 @@ The program can use any SQL databse thanks to SQLAlchemy, just change the `DATAB
 
 <img width="1231" alt="image" src="https://github.com/user-attachments/assets/f66e3d53-9715-4f20-800e-08073ed36f8e" />
 
+## Running Tests
+
+To run the tests, follow these steps:
+
+1. Ensure your virtual environment is activated:
+
+    ```sh
+    source venv/bin/activate  # On Windows use `venv\Scripts\activate`
+    ```
+
+2. Install the test dependencies if not already installed:
+
+    ```sh
+    pip install pytest httpx
+    ```
+
+3. Run the tests using `pytest`:
+
+    ```sh
+    pytest
+    ```
+
+This will discover and run all the test cases in the `tests` directory.
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
