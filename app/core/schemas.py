@@ -14,3 +14,8 @@ class AllergyResponse(AllergyBase):
 
     class ConfigDict:
         from_attributes = True
+
+class AllergyUpdate(BaseModel):
+    allergyid: Optional[int] = None  # Using allergyid instead of id
+    allergyname: str
+    type: str
