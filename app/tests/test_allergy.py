@@ -75,7 +75,6 @@ def test_delete_allergy():
     else:
         allergy_id = test_id
         
-    print(f"AlleryID: {allergy_id}")
     response = client.delete(
         f"/allergies/{allergy_id}",
         headers={"access_token": f"{config.API_KEY}"},
