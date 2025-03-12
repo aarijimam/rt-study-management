@@ -108,7 +108,6 @@ access_token: your-api-key
 The API includes automatically generated documentation using Swagger (OpenAPI). You can access the Swagger UI to explore and test the API endpoints.
 
 - **Swagger UI**: Available at `http://localhost:8000/docs`
-- **ReDoc**: Available at `http://localhost:8000/redoc`
 
 ### API Key Authentication in Swagger
 
