@@ -109,7 +109,7 @@ To secure the API, ensure that you are using HTTPS in production. You can use a 
 
 ## Database
 
-The program can use any SQL databse thanks to SQLAlchemy, just change the `DATABASE_URL` to the desired database url in the .env.
+The program can use any SQL databse thanks to SQLAlchemy, just change the `DATABASE_URL` to the desired database url in the `.env`.
 
 ### Database Design
 
