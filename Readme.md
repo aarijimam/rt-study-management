@@ -107,6 +107,10 @@ access_token: your-api-key
 
 To secure the API, ensure that you are using HTTPS in production. You can use a reverse proxy like Nginx to handle SSL termination.
 
+## Database Design
+
+<img width="1231" alt="image" src="https://github.com/user-attachments/assets/f66e3d53-9715-4f20-800e-08073ed36f8e" />
+
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
