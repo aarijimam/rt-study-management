@@ -103,6 +103,23 @@ access_token: your-api-key
          -H "access_token: your-api-key"
     ```
 
+## Swagger Documentation
+
+The API includes automatically generated documentation using Swagger (OpenAPI). You can access the Swagger UI to explore and test the API endpoints.
+
+- **Swagger UI**: Available at `http://localhost:8000/docs`
+- **ReDoc**: Available at `http://localhost:8000/redoc`
+
+### API Key Authentication in Swagger
+
+To use the API key for authentication in the Swagger UI:
+
+1. Click on the "Authorize" button in the top right corner of the Swagger UI.
+2. Enter your API key in the `access_token` field.
+3. Click the "Authorize" button to apply the API key to all requests.
+
+This will allow you to interact with the secured endpoints directly from the Swagger UI.
+
 ## Securing the API
 
 To secure the API, ensure that you are using HTTPS in production. You can use a reverse proxy like Nginx to handle SSL termination.
