@@ -134,7 +134,7 @@ To run the tests, follow these steps:
 3. Run the tests using `pytest`:
 
     ```sh
-    pytest
+    python -m pytest app/
     ```
 
 This will discover and run all the test cases in the `tests` directory.
