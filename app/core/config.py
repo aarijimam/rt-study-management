@@ -6,6 +6,9 @@ load_dotenv()
 
 class Config:
     # Database settings
-    DATABASE_URL = os.getenv("DATABASE_URL", "postgresql://user:password@localhost:5432/study_db")
+    DATABASE_URL = os.getenv("DATABASE_URL")
+    API_KEY = os.getenv("API_KEY")
+    print(DATABASE_URL)
+    print(API_KEY)
 
 config = Config()
