@@ -1,10 +1,12 @@
-from fastapi import APIRouter, Depends, HTTPException
+# filepath: /Users/aarijimam/Work/Risetech/demo-project/app/api/routes/allergy.py
+from fastapi import APIRouter, Depends, HTTPException, Security
+from fastapi.security.api_key import APIKey
 from sqlalchemy.orm import Session
 from typing import List, Dict
 
 from app.core import models, schemas
 from app.core.database import get_db
-
+from app.core.security import get_api_key
 
 router = APIRouter(
     prefix="/allergies",
@@ -13,7 +15,7 @@ router = APIRouter(
 
 # Create new Allergies
 @router.post("/", response_model=Dict[str, List[schemas.AllergyResponse]])
-def create_allergies(allergies: List[schemas.AllergyCreate], db: Session = Depends(get_db)):
+def create_allergies(allergies: List[schemas.AllergyCreate], db: Session = Depends(get_db), api_key: APIKey = Depends(get_api_key)):
     added_allergies = []
     existing_allergies = []
     for allergy in allergies:
@@ -25,7 +27,7 @@ def create_allergies(allergies: List[schemas.AllergyCreate], db: Session = Depen
         if existing_allergy:
             existing_allergies.append(existing_allergy)
         else:
-            new_allergy = models.Allergy(**allergy.model_dump())
+            new_allergy = models.Allergy(**allergy.dict())
             db.add(new_allergy)
             db.commit()
             db.refresh(new_allergy)
@@ -35,12 +37,12 @@ def create_allergies(allergies: List[schemas.AllergyCreate], db: Session = Depen
 
 # Get all Allergies
 @router.get("/", response_model=List[schemas.AllergyResponse])
-def get_all_allergies(db: Session = Depends(get_db)):
+def get_all_allergies(db: Session = Depends(get_db), api_key: APIKey = Depends(get_api_key)):
     return db.query(models.Allergy).all()
 
 # Get Allergy by ID
 @router.get("/{allergy_id}", response_model=schemas.AllergyResponse)
-def get_allergy_by_id(allergy_id: int, db: Session = Depends(get_db)):
+def get_allergy_by_id(allergy_id: int, db: Session = Depends(get_db), api_key: APIKey = Depends(get_api_key)):
     allergy = db.query(models.Allergy).filter(models.Allergy.AllergyID == allergy_id).first()
     if not allergy:
         raise HTTPException(status_code=404, detail="Allergy not found")
@@ -48,7 +50,7 @@ def get_allergy_by_id(allergy_id: int, db: Session = Depends(get_db)):
 
 # Delete an Allergy
 @router.delete("/{allergy_id}")
-def delete_allergy(allergy_id: int, db: Session = Depends(get_db)):
+def delete_allergy(allergy_id: int, db: Session = Depends(get_db), api_key: APIKey = Depends(get_api_key)):
     allergy = db.query(models.Allergy).filter(models.Allergy.AllergyID == allergy_id).first()
     if not allergy:
         raise HTTPException(status_code=404, detail="Allergy not found")
